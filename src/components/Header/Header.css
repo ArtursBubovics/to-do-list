@@ -1,0 +1,24 @@
+.header{
+    height: 9vh;
+    background-color: #6633CC;
+    display: flex;
+    align-items: center;
+}   
+
+.header_container{
+    width: 100%;
+    padding: 0 80px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+}
+
+.menu{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}

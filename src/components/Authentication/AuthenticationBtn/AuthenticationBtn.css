@@ -1,0 +1,27 @@
+.authenticationbtns{
+    display: flex;
+    align-items: center;
+}
+
+.authenticationbtn{
+        display: inline-block;
+        color: #6633CC;
+        font-weight: 700;
+        text-decoration: none;
+        user-select: none;
+        padding: .5em 2em;
+        outline: none;
+        border: 2px solid;
+        border-radius: 15px;
+        transition: 0.2s;
+        margin-right: 10px;
+    }
+
+.authenticationbtn:active { background: #e2e0e6; }
+
+.authenticationtext{
+    font-size: 15px;
+    color: #6633CC;
+    padding-top: 2px;
+}
+

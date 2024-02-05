@@ -1,0 +1,40 @@
+import Header from "../Header/Header"
+import ToDoItem from "./ToDoItem"
+import "./ToDoList.css"
+import { updateNewEnterTextActionCreator } from "../../Redux/Reducers/todo-reducer"
+
+const ToDoList = (props) => {
+
+    let toDoListPage = props.state.toDoListPage
+
+    function onChangeEnterText(event) {
+        let body = event.target.value
+        props.dispatch(updateNewEnterTextActionCreator(body))
+    }
+
+    function handleKeyPress(event) {
+        // if (event.key === 'Enter') {
+        //     console.log("Enter key pressed. Submitting...");
+        // }
+    }
+
+    return (
+        <div>
+            <Header />
+            <div className="to-do__block">
+                <h1>ToDoList</h1>
+
+                {toDoListPage.toDoFieldData !== undefined ?
+                    toDoListPage.toDoFieldData.map(todo => <ToDoItem key={todo._id} dispatch={props.dispatch} todo={todo} />)
+                    : null
+                }
+
+                <input className="enterTextField" type="text" value={toDoListPage.enterText} onChange={onChangeEnterText}
+                    onKeyDown={handleKeyPress} placeholder="Enter new task" />
+            </div>
+
+        </div>
+    )
+}
+
+export default ToDoList

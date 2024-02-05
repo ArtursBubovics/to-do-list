@@ -1,23 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import {Routes, Route} from "react-router-dom";
+import Profile from './components/Profile/Profile';
+import ToDoList from './components/ToDoList/ToDoList';
+import Authentication from './components/Authentication/Authentication';
 
-function App() {
+function App(props) {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {props.state.authenticationPage.isAuthenticated ? (
+        <Routes>
+          <Route path="/" element={<ToDoList state={props.state} dispatch={props.dispatch}/>} />
+          <Route path="/Profile/*"  element={<Profile dispatch={props.dispatch}/>}/>
+          <Route path="/ToDoList/*" element={<ToDoList state={props.state} dispatch={props.dispatch}/>}/>
+        </Routes>
+      ) : ( 
+        <Routes>
+          <Route path="/" element={<Authentication state={props.state} dispatch={props.dispatch} type="SignUp" />} />
+          <Route path="/Login/*" element={<Authentication state={props.state} dispatch={props.dispatch} type="Login" />} />
+        </Routes>
+      )}
     </div>
   );
 }

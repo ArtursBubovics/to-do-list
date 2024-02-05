@@ -1,0 +1,21 @@
+.todo-item{
+    border-radius: 30px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    box-shadow: 0 3px 5px rgb(0,0,0,.1);
+    margin-bottom: 20px;
+    max-width: 70%;
+}
+
+.text{
+    position: relative;
+    font-size: 16px;
+    margin-left: 10px;
+    width: 100%;
+}
+
+.text:focus{
+    outline: none;
+}

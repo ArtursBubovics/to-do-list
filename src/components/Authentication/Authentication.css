@@ -1,0 +1,24 @@
+.authentication{
+    height: 100vh;
+    background-color: #6633CC; 
+}
+
+.authentication__container{
+    padding: 120px 300px;
+}
+
+.authentication__inner-block{
+    background-color: rgb(243, 243, 243);
+    padding: 40px 60px;
+    border-radius: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.authenticationinputs-block{
+    width: 100%;
+}
+
+.authentication__img{
+    object-fit: contain;
+}

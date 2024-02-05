@@ -1,0 +1,13 @@
+.authenticationinputs{
+    min-width: 150px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    padding-bottom: 10px;
+    gap: 20px;
+}
+
+.authenticationinputs input{
+    width: auto;
+    min-height: 35px;
+    padding: 10px;
+}
