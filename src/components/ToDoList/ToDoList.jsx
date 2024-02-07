@@ -17,14 +17,14 @@ const ToDoList = (props) => {
         //     console.log("Enter key pressed. Submitting...");
         // }
     }
-
+    
     return (
         <div>
             <Header />
             <div className="to-do__block">
-                <h1>ToDoList</h1>
 
-                {toDoListPage.toDoFieldData !== undefined ?
+                <h1>ToDoList</h1>
+                {toDoListPage.toDoFieldData !== null ?
                     toDoListPage.toDoFieldData.map(todo => <ToDoItem key={todo._id} dispatch={props.dispatch} todo={todo} />)
                     : null
                 }

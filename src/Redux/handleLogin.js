@@ -14,7 +14,7 @@ const handleLogin = async () => {
     }
 
     try {
-        const checkUserLoginResponse = await fetch('http://192.168.31.93:5000/api/checkLoginUser', {
+        const checkUserLoginResponse = await fetch('http://127.0.0.1:5000/api/checkLoginUser', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ const handleLogin = async () => {
             console.log('Добро пожаловать в аккаунт!');
 
             try {
-              const checkUserID = await fetch('http://192.168.31.93:5000/api/checkUserID', {
+              const checkUserID = await fetch('http://127.0.0.1:5000/api/checkUserID', { //http://192.168.31.93:5000
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ const handleLogin = async () => {
             }
 
             store.dispatch(updateAuthenticationStatus(true))
-            await store.dispatch(updateNewToDoDataActionCreator());
+            store.dispatch(updateNewToDoDataActionCreator());
           }
         } else {
           console.error('Ошибка при проверке пользователя:', checkUserLoginResult.error);

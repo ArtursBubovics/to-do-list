@@ -59,7 +59,7 @@ def add_user():
         gmail = request.json['gmail']
         password = request.json['password']
 
-        # cursor.execute("INSERT INTO [user] (gmail, password) VALUES (?, ?)", (gmail, password))
+        cursor.execute("INSERT INTO [user] (gmail, password) VALUES (?, ?)", (gmail, password))
         con.commit()
 
         return jsonify({"message": "Пользователь успешно зарегистрирован."})
@@ -75,7 +75,7 @@ def get_data():
         data = cursor.fetchall()
 
         formatted_data = [
-            {'toDoID': row[0], 'text': row[1], 'isChecked': bool(row[2])} for row in data
+            {'_id': row[0], 'text': row[1], 'isChecked': bool(row[2])} for row in data
         ]
 
         response_data = {"data": formatted_data}

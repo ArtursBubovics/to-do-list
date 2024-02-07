@@ -9,33 +9,68 @@ const LOGOUT = "LOGOUT"
 const authenticationReducer = (state, action) => {
 
     switch(action.type){
+
         case UPDATE_AUTHENTICATE:
-            state.isAuthenticated = action.authentication_value
-            return state;
+            let test = {
+                ...state,
+                authenticationPage: {
+                    ...state.authenticationPage,
+                    isAuthenticated: action.authentication_value
+                },
+            };
+            return test
 
         case UPDATE_URL:
             action.navigate('/');
-            state.gmailField = '';
-            state.passwordField = '';
-            state.confirmField = '';
-            return state;
+            
+            return {
+                ...state,
+                authenticationPage: {
+                    ...state.authenticationPage,
+                    gmailField: '',
+                    passwordField: '',
+                    confirmField: '',
+                    isAuthenticated: true 
+                }
+            };
 
         case UPDATE_GMAIL:
-            state.gmailField = action.newGmail;
-            return state;
+            return {
+                ...state,
+                authenticationPage: {
+                    ...state.authenticationPage,
+                    gmailField: action.newGmail
+                }
+            };
 
         case UPDATE_PASSWORD:
-            state.passwordField = action.newPassword;
-            return state;
+            return {
+                ...state,
+                authenticationPage: {
+                    ...state.authenticationPage,
+                    passwordField: action.newPassword
+                },
+                toDoListPage: state.toDoListPage
+            };
 
         case UPDATE_CONFIRM:
-            state.confirmField = action.newConfirm;
-            return state;
+            return {
+                ...state,
+                authenticationPage: {
+                    ...state.authenticationPage,
+                    confirmField: action.newConfirm
+                }
+            };    
 
         case LOGOUT:
-            state.isAuthenticated = false;
-
-            return state;
+            return {
+                ...state,
+                authenticationPage: {
+                    ...state.authenticationPage,
+                    isAuthenticated: false
+                }
+            }; 
+            
         default:
             return state;
     }

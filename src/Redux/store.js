@@ -7,26 +7,25 @@ let store = {
             gmailField: '',
             passwordField: '',
             confirmField: '',
-            isAuthenticated: false //
+            isAuthenticated: false
         },
         toDoListPage: {
-            toDoFieldData: [],
+            toDoFieldData: null,
             enterText: ''
         }
     },
     _callSubscriber() {},
 
     getState() {
-        console.log(this._state)
         return this._state
     },
     subscribe(observer) {
         this._callSubscriber = observer
     },
 
-    dispatch(action) {
-        this._state.authenticationPage = authenticationReducer(this._state.authenticationPage, action)
-        this._state.toDoListPage = toDoReducer(this._state, action)
+    async dispatch(action) {
+        this._state = await authenticationReducer(this._state, action)
+        this._state = await toDoReducer(this._state, action)
 
         this._callSubscriber(this._state)
     }

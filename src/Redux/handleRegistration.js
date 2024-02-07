@@ -17,7 +17,7 @@ const handleRegistration = async () => {
     }
 
     try {
-        const checkUserRegistrationResponse = await fetch('http://192.168.31.93:5000/api/checkRegistrationUser', {
+        const checkUserRegistrationResponse = await fetch('http://127.0.0.1:5000/api/checkRegistrationUser', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ const handleRegistration = async () => {
             return;
           } else {
 
-            const registerResponse = await fetch('http://192.168.31.93:5000/api/addUser', {
+            const registerResponse = await fetch('http://127.0.0.1:5000/api/addUser', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
