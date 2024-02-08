@@ -28,7 +28,7 @@ const handleAddTask = async () => {
             store.getState().toDoListPage.toDoFieldData = null
             store.dispatch(updateNewToDoDataActionCreator(true));
         }else {
-          console.error('Ошибка при проверке пользователя:', addUserTaskResult.error);
+          console.error('Ошибка при добавления задания:', addUserTaskResult.error);
         }
     }catch (error){
         console.error('Ошибка при отправке запроса:', error);

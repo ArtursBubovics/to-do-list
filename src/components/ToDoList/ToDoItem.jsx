@@ -1,6 +1,7 @@
 import React from "react";
 import "./ToDoItem.css"
 import { updateNewTaskTextActionCreator, updateNewCheckboxActionCreator } from "../../Redux/Reducers/todo-reducer";
+import handleDeleteTask from "../../Redux/handleDeleteTask";
 
 const ToDoItem = (props) => {
 
@@ -18,6 +19,7 @@ const ToDoItem = (props) => {
 
     function onDeleteTaskField(){
         let fieldId = props.todo._id
+        handleDeleteTask(fieldId)
     }
 
     return (

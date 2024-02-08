@@ -104,5 +104,17 @@ def add_task():
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
+@app.route('/api/deleteTask', methods=['POST'])
+def delete_task():
+    try:
+        fieldId = request.json['fieldId']
+
+        cursor.execute("DELETE FROM [task] WHERE toDoID = ?", (fieldId,))
+        con.commit()
+
+        return jsonify({"message": "Задание успешно удалено.", "ok": True})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
