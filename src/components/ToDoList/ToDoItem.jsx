@@ -1,24 +1,24 @@
 import React from "react";
 import "./ToDoItem.css"
-import { updateNewTaskTextActionCreator, updateNewCheckboxActionCreator } from "../../Redux/Reducers/todo-reducer";
+// import { updateNewTaskTextActionCreator, updateNewCheckboxActionCreator } from "../../Redux/Reducers/todo-reducer";
 import handleDeleteTask from "../../Redux/handleDeleteTask";
+import handleUpdatetTaskText from "../../Redux/handleUpdatetTaskText";
 
 const ToDoItem = (props) => {
 
+    let fieldId = props.todo._id
+
     function onChangeTaskText(event){
-        let body = event.target.innerText
-        let value = {key: props.todo._id, body: body}
-        props.dispatch(updateNewTaskTextActionCreator(value))
+        let newText = event.target.innerText
+        handleUpdatetTaskText(fieldId, newText)
     }
 
     function onChangeCheckbox(event){
-        let body = event.target.checked
-        let value = {key: props.todo._id, body: body}
-        props.dispatch(updateNewCheckboxActionCreator(value))
+        //value = event.target.checked
+        //handleDeleteTask(fieldId, value)
     }
 
     function onDeleteTaskField(){
-        let fieldId = props.todo._id
         handleDeleteTask(fieldId)
     }
 
