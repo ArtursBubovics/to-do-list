@@ -62,10 +62,14 @@ def add_user():
         cursor.execute("INSERT INTO [user] (gmail, password) VALUES (?, ?)", (gmail, password))
         con.commit()
 
-        return jsonify({"message": "Пользователь успешно зарегистрирован."})
+        cursor.execute("SELECT userID FROM [user] WHERE gmail = ? AND password = ?", (gmail, password))
+        user_id = cursor.fetchone()[0]
+
+        return jsonify({"message": "Пользователь успешно зарегистрирован.", "user_id": user_id})
     except Exception as e:
         return jsonify({"error": str(e)}), 400
     
+
 @app.route('/api/data/task', methods=['GET'])
 def get_data():
     try:

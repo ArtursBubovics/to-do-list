@@ -1,6 +1,5 @@
 import store from "./store";
 import { updateAuthenticationStatus } from "./Reducers/authentication-reducer";
-import { updateNewToDoDataActionCreator } from "./Reducers/todo-reducer";
 
 const handleRegistration = async () => {
 
@@ -49,9 +48,12 @@ const handleRegistration = async () => {
             if (registerResponse.ok) {
               console.log('Регистрация прошла успешно!');
               
+              const { user_id } = await registerResponse.json();
+
+              localStorage.setItem('personID', user_id);
 
               store.dispatch(updateAuthenticationStatus(true))
-              await store.dispatch(updateNewToDoDataActionCreator());
+              //updateNewToDoDataActionCreator
             } else {
               console.error('Ошибка при регистрации:', registerResponse.statusText);
             }

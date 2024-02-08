@@ -49,6 +49,10 @@ const handleLogin = async () => {
                 localStorage.setItem('personID', JSON.stringify(checkUserIdResult.user_id))
                 
                 console.log('Успешно добавлен пользователя ID в LocalStorage');
+
+                store.dispatch(updateAuthenticationStatus(true))
+                store.dispatch(updateNewToDoDataActionCreator(true));
+
               }else{
                 console.error('Ошибка сохранении пользователя ID в LocalStorage');
               }
@@ -57,8 +61,7 @@ const handleLogin = async () => {
               console.error('Ошибка при отправке запроса:', error);
             }
 
-            store.dispatch(updateAuthenticationStatus(true))
-            store.dispatch(updateNewToDoDataActionCreator());
+
           }
         } else {
           console.error('Ошибка при проверке пользователя:', checkUserLoginResult.error);

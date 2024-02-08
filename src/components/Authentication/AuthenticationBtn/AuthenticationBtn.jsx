@@ -1,7 +1,7 @@
 import React from "react"
 import "./AuthenticationBtn.css"
 import { NavLink } from "react-router-dom"
-import {logoutActionCreator} from "../../../Redux/Reducers/authentication-reducer" 
+import { logoutActionCreator } from "../../../Redux/Reducers/authentication-reducer" 
 import { useNavigate } from 'react-router-dom';
 import handleRegistration from "../../../Redux/handleRegistration";
 import handleLogin from "../../../Redux/handleLogin";
@@ -11,19 +11,20 @@ const AuthenticationBtn = (props) => {
     let returnValue = null
     const navigate = useNavigate();
 
-    function registrationButtonClick(){
+    function registrationButtonClick (){
         handleRegistration();
-        props.dispatch(updateUrlActionCreator(navigate)) //add if an error occurs, does not apply
+        props.dispatch(updateUrlActionCreator(navigate))
     }
 
     function loginButtonClick(){
         handleLogin();
-        props.dispatch(updateUrlActionCreator(navigate)) //add if an error occurs, does not apply
+        props.dispatch(updateUrlActionCreator(navigate))
     }
 
     function onLogout(){
-        props.dispatch(logoutActionCreator())
-        props.dispatch(updateUrlActionCreator(navigate))
+        props.dispatch(logoutActionCreator()).then(() => {
+            props.dispatch(updateUrlActionCreator(navigate));
+        });
     }
 
     switch(props.type){

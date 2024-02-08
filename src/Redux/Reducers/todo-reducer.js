@@ -18,6 +18,10 @@ const toDoReducer = (state, action) => {
                         toDoListPage: {
                             ...state.toDoListPage,
                             toDoFieldData: state.toDoListPage.toDoFieldData === null ? data.data : state.toDoListPage.toDoFieldData.concat(data.data)
+                        },
+                        authenticationPage: {
+                            ...state.authenticationPage,
+                            isAuthenticated: action.isAuthenticated
                         }
                     };
                     resolve(test);
@@ -80,8 +84,9 @@ export const addTaskActionCreator = () => ({
     type: ADD_TASK
 }) // not working yet
 
-export const updateNewToDoDataActionCreator = () => ({
-    type: UPDATE_TODO_DATA
+export const updateNewToDoDataActionCreator = (isAuthenticated) => ({
+    type: UPDATE_TODO_DATA,
+    isAuthenticated: isAuthenticated
 })
 
 export const updateNewEnterTextActionCreator = (text) => ({

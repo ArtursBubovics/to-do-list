@@ -11,26 +11,20 @@ const authenticationReducer = (state, action) => {
     switch(action.type){
 
         case UPDATE_AUTHENTICATE:
-            let test = {
+            return {
                 ...state,
                 authenticationPage: {
                     ...state.authenticationPage,
                     isAuthenticated: action.authentication_value
                 },
             };
-            return test
 
         case UPDATE_URL:
             action.navigate('/');
-            
             return {
                 ...state,
                 authenticationPage: {
                     ...state.authenticationPage,
-                    gmailField: '',
-                    passwordField: '',
-                    confirmField: '',
-                    isAuthenticated: true 
                 }
             };
 
@@ -61,13 +55,19 @@ const authenticationReducer = (state, action) => {
                     confirmField: action.newConfirm
                 }
             };    
-
+            
         case LOGOUT:
+            localStorage.clear();
             return {
-                ...state,
                 authenticationPage: {
-                    ...state.authenticationPage,
+                    gmailField: '',
+                    passwordField: '',
+                    confirmField: '',
                     isAuthenticated: false
+                },
+                toDoListPage: {
+                    toDoFieldData: null,
+                    enterText: ''
                 }
             }; 
             
@@ -79,6 +79,7 @@ const authenticationReducer = (state, action) => {
 export const updateAuthenticationStatus = (value) => ({type: UPDATE_AUTHENTICATE, authentication_value: value})
 
 export const updateUrlActionCreator = (navigateuUrl) => ({type: UPDATE_URL, navigate: navigateuUrl})
+
 
 export const logoutActionCreator = () => ({type: LOGOUT})
 
