@@ -17,6 +17,7 @@ let store = {
     _callSubscriber() {},
 
     getState() {
+        console.log(this._state)
         return this._state
     },
     subscribe(observer) {

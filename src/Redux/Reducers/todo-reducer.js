@@ -1,9 +1,7 @@
-const ADD_TASK = "ADD-TASK"
 const UPDATE_TODO_DATA = "UPDATE-TODO-DATA"
 const UPDATE_ENTER_TEXT = "UPDATE-ENTER-TEXT"
 const UPDATE_TASK_TEXT = "UPDATE-TASK-TEXT"
 const UPDATE_CHECKBOX = "UPDATE-CHECKBOX"
-const DELETE_TASK_FIELD = "DELETE-TASK-FIELD"
 
 const toDoReducer = (state, action) => {
     switch (action.type) {
@@ -30,9 +28,6 @@ const toDoReducer = (state, action) => {
                     reject(error);
                 }
             });
-
-        // case ADD_TASK:
-        //     return state;
 
         case UPDATE_ENTER_TEXT:
             return {
@@ -71,18 +66,10 @@ const toDoReducer = (state, action) => {
                 })
             };
 
-            // case DELETE_TASK_FIELD:
-            //     нужно удалить actionюdeleteFieldId этот ид из бд
-            //     return state;
-
         default:
             return state;
     }
 }
-
-export const addTaskActionCreator = () => ({
-    type: ADD_TASK
-}) // not working yet
 
 export const updateNewToDoDataActionCreator = (isAuthenticated) => ({
     type: UPDATE_TODO_DATA,
@@ -98,15 +85,11 @@ export const updateNewTaskTextActionCreator = (value) => ({
     type: UPDATE_TASK_TEXT,
     list: value
 })
+
 export const updateNewCheckboxActionCreator = (value) => ({
     type: UPDATE_CHECKBOX,
     list: value
 })
-
-export const deleteTaskFieldActionCreator = (id) => ({
-    type: DELETE_TASK_FIELD,
-    deleteFieldId: id
-});
 
 
 export default toDoReducer;

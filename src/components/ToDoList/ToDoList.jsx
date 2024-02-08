@@ -2,6 +2,7 @@ import Header from "../Header/Header"
 import ToDoItem from "./ToDoItem"
 import "./ToDoList.css"
 import { updateNewEnterTextActionCreator } from "../../Redux/Reducers/todo-reducer"
+import handleAddTask from "../../Redux/handleAddTask"
 
 const ToDoList = (props) => {
 
@@ -13,9 +14,10 @@ const ToDoList = (props) => {
     }
 
     function handleKeyPress(event) {
-        // if (event.key === 'Enter') {
-        //     console.log("Enter key pressed. Submitting...");
-        // }
+        if (event.key === 'Enter') {
+            console.log("Enter key pressed. Submitting...");
+            handleAddTask();
+        }
     }
     
     return (

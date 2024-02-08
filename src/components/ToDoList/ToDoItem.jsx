@@ -1,6 +1,6 @@
 import React from "react";
 import "./ToDoItem.css"
-import { updateNewTaskTextActionCreator, updateNewCheckboxActionCreator, deleteTaskFieldActionCreator } from "../../Redux/Reducers/todo-reducer";
+import { updateNewTaskTextActionCreator, updateNewCheckboxActionCreator } from "../../Redux/Reducers/todo-reducer";
 
 const ToDoItem = (props) => {
 
@@ -18,7 +18,6 @@ const ToDoItem = (props) => {
 
     function onDeleteTaskField(){
         let fieldId = props.todo._id
-        props.dispatch(deleteTaskFieldActionCreator(fieldId))
     }
 
     return (

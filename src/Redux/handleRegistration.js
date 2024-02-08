@@ -53,7 +53,6 @@ const handleRegistration = async () => {
               localStorage.setItem('personID', user_id);
 
               store.dispatch(updateAuthenticationStatus(true))
-              //updateNewToDoDataActionCreator
             } else {
               console.error('Ошибка при регистрации:', registerResponse.statusText);
             }

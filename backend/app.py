@@ -9,6 +9,8 @@ con = pyodbc.connect('DRIVER={SQL Server};Server=LAPTOP-BA0NQS8I\SQLEXPRESS;Data
 
 cursor = con.cursor()
 
+NOT_CHECKED = 0
+
 @app.route('/api/checkRegistrationUser', methods=['POST'])
 def check_registration_user():
     try:
@@ -88,6 +90,19 @@ def get_data():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+@app.route('/api/addTask', methods=['POST'])
+def add_task():
+    try:
+        text = request.json['text']
+        isChecked = NOT_CHECKED
+        user_id = request.json['user_id']
+
+        cursor.execute("INSERT INTO [task] (text, isChecked, userID) VALUES (?,?,?)", (text, isChecked, user_id))
+        con.commit()
+
+        return jsonify({"message": "Задание успешно добавлено.", "ok": True})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
