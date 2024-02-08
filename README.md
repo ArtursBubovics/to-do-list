@@ -5,5 +5,5 @@
 
 ## Still needs to be completed:
 ### adaptation
-### navigating to URL after not entering data during authorization
-### adding, changing, deleting “ToDo” fields
+### error notification
+### changing“ToDo” fields
