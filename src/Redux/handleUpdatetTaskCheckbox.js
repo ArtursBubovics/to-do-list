@@ -1,30 +1,29 @@
 import store from "./store";
 import { updateNewToDoDataActionCreator } from "./Reducers/todo-reducer";
 
-const handleUpdatetTaskText = async (fieldId, newText) => {
-
+const handleUpdatetTaskCheckbox = async (fieldId, checkboxValue) => {
     try{
-        const updateUserTaskTextResponse = await fetch('http://127.0.0.1:5000/api/updateTask/text', {
+        const updateUserTasCheckboxResponse = await fetch('http://127.0.0.1:5000/api/updateTask/checkbox', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
                 fieldId: fieldId,
-                newText: newText
+                checkboxValue: checkboxValue
             }),
         });
 
-        const updateUserTaskTextResult = await updateUserTaskTextResponse.json();
+        const updateUserTaskCheckboxResult = await updateUserTasCheckboxResponse.json();
 
-        if(updateUserTaskTextResult.ok){
+        if(updateUserTaskCheckboxResult.ok){
             store.dispatch(updateNewToDoDataActionCreator(true));
         }else {
-          console.error('Ошибка при изменении задания:', updateUserTaskTextResult.error);
+          console.error('Ошибка при изменении задания:', updateUserTaskCheckboxResult.error);
         }
     }catch (error){
         console.error('Ошибка при отправке запроса:', error);
     }
 }
 
-export default handleUpdatetTaskText
+export default handleUpdatetTaskCheckbox

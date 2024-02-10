@@ -116,13 +116,26 @@ def delete_task():
     except Exception as e:
         return jsonify({"error": str(e)}), 400
     
-@app.route('/api/updateTask', methods=['POST'])
-def update_task():
+@app.route('/api/updateTask/text', methods=['POST'])
+def update_task_text():
     try:
         fieldId = request.json['fieldId']
         newText = request.json['newText']
 
         cursor.execute("UPDATE [task] SET text = ? WHERE toDoID = ?", (newText, fieldId))
+        con.commit()
+
+        return jsonify({"message": "Задание успешно обновлено.", "ok": True})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
+    
+@app.route('/api/updateTask/checkbox', methods=['POST'])
+def update_task_checkbox():
+    try:
+        fieldId = request.json['fieldId']
+        checkboxValue = request.json['checkboxValue']
+
+        cursor.execute("UPDATE [task] SET isChecked = ? WHERE toDoID = ?", (checkboxValue, fieldId))
         con.commit()
 
         return jsonify({"message": "Задание успешно обновлено.", "ok": True})

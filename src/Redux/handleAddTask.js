@@ -25,7 +25,7 @@ const handleAddTask = async () => {
         const addUserTaskResult = await addUserTaskResponse.json();
 
         if(addUserTaskResult.ok){
-            store.getState().toDoListPage.toDoFieldData = null
+            //store.getState().toDoListPage.toDoFieldData = null
             store.dispatch(updateNewToDoDataActionCreator(true));
         }else {
           console.error('Ошибка при добавления задания:', addUserTaskResult.error);

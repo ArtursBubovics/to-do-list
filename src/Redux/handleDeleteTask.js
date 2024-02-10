@@ -17,7 +17,6 @@ const handleDeleteTask = async (fieldId) => {
         const deleteUserTaskResult = await deleteUserTaskResponse.json();
 
         if(deleteUserTaskResult.ok){
-            store.getState().toDoListPage.toDoFieldData = null
             store.dispatch(updateNewToDoDataActionCreator(true));
         }else {
           console.error('Ошибка при удаления задания:', deleteUserTaskResult.error);

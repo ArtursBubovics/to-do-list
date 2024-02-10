@@ -1,8 +1,8 @@
 import React from "react";
 import "./ToDoItem.css"
-// import { updateNewTaskTextActionCreator, updateNewCheckboxActionCreator } from "../../Redux/Reducers/todo-reducer";
 import handleDeleteTask from "../../Redux/handleDeleteTask";
 import handleUpdatetTaskText from "../../Redux/handleUpdatetTaskText";
+import handleUpdatetTaskCheckbox from "../../Redux/handleUpdatetTaskCheckbox";
 
 const ToDoItem = (props) => {
 
@@ -14,8 +14,8 @@ const ToDoItem = (props) => {
     }
 
     function onChangeCheckbox(event){
-        //value = event.target.checked
-        //handleDeleteTask(fieldId, value)
+        let checkboxValue = event.target.checked ? 1 : 0
+        handleUpdatetTaskCheckbox(fieldId, checkboxValue)
     }
 
     function onDeleteTaskField(){
@@ -25,7 +25,7 @@ const ToDoItem = (props) => {
     return (
         <div className="todo-item">
             <input className="todo-item__input" onChange={onChangeCheckbox} type="checkbox" checked={props.todo.isChecked}/>
-            <span className="text" onInput={onChangeTaskText} contentEditable="true">{props.todo.text}</span>
+            <span className="text" onBlur={onChangeTaskText} contentEditable="true">{props.todo.text}</span>
             <button>
                 <img src="/img/remove.png" onClick={onDeleteTaskField} alt="" />
             </button>
