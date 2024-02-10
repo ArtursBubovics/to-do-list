@@ -1,7 +1,18 @@
+import React, { useEffect } from 'react';
 import "./Authentication.css"
 import AuthenticationInputs from "./AuthenticationInputs/AuthenticationInputs"
 import AuthenticationBtn from "./AuthenticationBtn/AuthenticationBtn"
+
+const clearLocalStorage = () => {
+    localStorage.clear();
+  };
+
 const Authentication = (props) => {
+
+    useEffect(() => {
+        clearLocalStorage();
+      }, []);
+
     return (
         <div className="authentication">
             <div className="authentication__container">

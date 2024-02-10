@@ -57,7 +57,6 @@ const authenticationReducer = (state, action) => {
             };    
             
         case LOGOUT:
-            localStorage.clear();
             return {
                 authenticationPage: {
                     gmailField: '',
