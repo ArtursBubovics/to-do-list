@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import "./Authentication.css"
 import AuthenticationInputs from "./AuthenticationInputs/AuthenticationInputs"
 import AuthenticationBtn from "./AuthenticationBtn/AuthenticationBtn"
+import PopupBlock from '../PopupBlock/PopupBlock';
 
 const clearLocalStorage = () => {
     localStorage.clear();
@@ -15,6 +16,7 @@ const Authentication = (props) => {
 
     return (
         <div className="authentication">
+            {props.state.popupBlock.isActive ? <PopupBlock state={props.state}/> : null } 
             <div className="authentication__container">
                 <div className="authentication__inner-block">
                     <img className="authentication__img" src="/img/user-con.png" alt=''/>

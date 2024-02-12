@@ -3,6 +3,8 @@ import ToDoItem from "./ToDoItem"
 import "./ToDoList.css"
 import { updateNewEnterTextActionCreator } from "../../Redux/Reducers/todo-reducer"
 import handleAddTask from "../../Redux/handleAddTask"
+import PopupBlock from "../PopupBlock/PopupBlock"
+
 
 const ToDoList = (props) => {
 
@@ -24,6 +26,7 @@ const ToDoList = (props) => {
         <div>
             <Header />
             <div className="to-do__block">
+            {props.state.popupBlock.isActive ? <PopupBlock state={props.state}/> : null } 
 
                 <h1>ToDoList</h1>
                 {toDoListPage.toDoFieldData !== null ?

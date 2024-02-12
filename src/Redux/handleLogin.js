@@ -5,12 +5,14 @@ import { updateNewToDoDataActionCreator } from "./Reducers/todo-reducer";
 const handleLogin = async () => {
     const { gmailField, passwordField } = store.getState().authenticationPage;
 
+    const result = { error: null, data: null };
+
     if (!gmailField.trim() || !passwordField.trim()) {
-        console.error('Пожалуйста, заполните все поля.');
-        return;
+        result.error = 'Пожалуйста, заполните все поля.';
+        return result
     } else if(!gmailField.includes('@')){
-        console.error('Пожалуйста, введите корректный адрес электронной почты.');
-        return;
+        result.error = 'Пожалуйста, введите корректный адрес электронной почты.';
+        return result
     }
 
     try {
@@ -29,7 +31,6 @@ const handleLogin = async () => {
     
         if (checkUserLoginResponse.ok) {
           if (checkUserLoginResult.exists) {
-            console.log('Добро пожаловать в аккаунт!');
 
             try {
               const checkUserID = await fetch('http://127.0.0.1:5000/api/checkUserID', { //http://192.168.31.93:5000
@@ -48,10 +49,12 @@ const handleLogin = async () => {
               if(checkUserIdResult.user_id){
                 localStorage.setItem('personID', JSON.stringify(checkUserIdResult.user_id))
                 
-                console.log('Успешно добавлен пользователя ID в LocalStorage');
-
-                store.dispatch(updateAuthenticationStatus(true))
-                store.dispatch(updateNewToDoDataActionCreator(true));
+                await store.dispatch(updateAuthenticationStatus(true))
+                await store.dispatch(updateNewToDoDataActionCreator(true));
+                
+                result.data = 'Добро пожаловать в аккаунт!';
+                return result;
+                
 
               }else{
                 console.error('Ошибка сохранении пользователя ID в LocalStorage');
@@ -61,10 +64,12 @@ const handleLogin = async () => {
               console.error('Ошибка при отправке запроса:', error);
             }
 
-
+          }else{
+            result.error = 'Такого пользователя с такими данными нету!';
+          return result
           }
         } else {
-          console.error('Ошибка при проверке пользователя:', checkUserLoginResult.error);
+          console.error('Ошибка при отправке запроса');
         }
       } catch (error) {
         console.error('Ошибка при отправке запроса:', error);

@@ -1,4 +1,5 @@
 .authentication{
+    position: relative;
     height: 100vh;
     background-color: #6633CC; 
 }

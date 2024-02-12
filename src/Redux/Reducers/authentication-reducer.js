@@ -16,7 +16,7 @@ const authenticationReducer = (state, action) => {
                 authenticationPage: {
                     ...state.authenticationPage,
                     isAuthenticated: action.authentication_value
-                },
+                }
             };
 
         case UPDATE_URL:
