@@ -22,7 +22,7 @@ const handleDeleteTask = async (fieldId) => {
           console.error('Ошибка при удаления задания:', deleteUserTaskResult.error);
         }
     }catch (error){
-        console.error('Ошибка при отправке запроса:', error);
+        console.error('Error sending request:', error);
     }
 }
 

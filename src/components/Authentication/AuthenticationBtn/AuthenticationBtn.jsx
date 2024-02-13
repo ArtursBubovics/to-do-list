@@ -32,7 +32,7 @@ const AuthenticationBtn = (props) => {
 
             }
         }).catch((error) => {
-            console.error('Ошибка при регестрации:', error);
+            console.error('Error during registration:', error);
         });
     }
 
@@ -56,7 +56,7 @@ const AuthenticationBtn = (props) => {
 
             }
         }).catch((error) => {
-            console.error('Ошибка при входе:', error);
+            console.error('Error during login:', error);
         });
     }
 

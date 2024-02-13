@@ -26,7 +26,7 @@ const toDoReducer = (state, action) => {
                     };
                     resolve(test);
                 } catch (error) {
-                    console.error('Ошибка при получении данных:', error);
+                    console.error('Error fetching data:', error);
                     reject(error);
                 }
             });

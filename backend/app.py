@@ -50,7 +50,7 @@ def check_id_user():
         if user_id:  
             return jsonify({"user_id": user_id[0]})
         else:
-            return jsonify({"error": "Пользователь с указанными учетными данными не найден"}), 404
+            return jsonify({"error": "User with the provided credentials was not found."}), 404 
 
     except Exception as e:
         return jsonify({"error": str(e)}), 400
@@ -67,7 +67,7 @@ def add_user():
         cursor.execute("SELECT userID FROM [user] WHERE gmail = ? AND password = ?", (gmail, password))
         user_id = cursor.fetchone()[0]
 
-        return jsonify({"message": "Пользователь успешно зарегистрирован.", "user_id": user_id})
+        return jsonify({"message": "The user has been successfully registered.", "user_id": user_id})
     except Exception as e:
         return jsonify({"error": str(e)}), 400
     
@@ -100,7 +100,7 @@ def add_task():
         cursor.execute("INSERT INTO [task] (text, isChecked, userID) VALUES (?,?,?)", (text, isChecked, user_id))
         con.commit()
 
-        return jsonify({"message": "Задание успешно добавлено.", "ok": True})
+        return jsonify({"message": "The task has been successfully added.", "ok": True})
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
@@ -112,7 +112,7 @@ def delete_task():
         cursor.execute("DELETE FROM [task] WHERE toDoID = ?", (fieldId,))
         con.commit()
 
-        return jsonify({"message": "Задание успешно удалено.", "ok": True})
+        return jsonify({"message": "The task has been successfully deleted.", "ok": True})
     except Exception as e:
         return jsonify({"error": str(e)}), 400
     
@@ -125,7 +125,7 @@ def update_task_text():
         cursor.execute("UPDATE [task] SET text = ? WHERE toDoID = ?", (newText, fieldId))
         con.commit()
 
-        return jsonify({"message": "Задание успешно обновлено.", "ok": True})
+        return jsonify({"message": "The task has been successfully updated.", "ok": True})
     except Exception as e:
         return jsonify({"error": str(e)}), 400
     
@@ -138,7 +138,7 @@ def update_task_checkbox():
         cursor.execute("UPDATE [task] SET isChecked = ? WHERE toDoID = ?", (checkboxValue, fieldId))
         con.commit()
 
-        return jsonify({"message": "Задание успешно обновлено.", "ok": True})
+        return jsonify({"message": "The task has been successfully updated.", "ok": True})
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 

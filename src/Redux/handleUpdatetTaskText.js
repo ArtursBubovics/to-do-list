@@ -20,10 +20,10 @@ const handleUpdatetTaskText = async (fieldId, newText) => {
         if(updateUserTaskTextResult.ok){
             store.dispatch(updateNewToDoDataActionCreator(true));
         }else {
-          console.error('Ошибка при изменении задания:', updateUserTaskTextResult.error);
+          console.error('Error while updating the task:', updateUserTaskTextResult.error);
         }
     }catch (error){
-        console.error('Ошибка при отправке запроса:', error);
+        console.error('Error sending request:', error);
     }
 }
 

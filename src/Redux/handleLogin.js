@@ -8,10 +8,10 @@ const handleLogin = async () => {
     const result = { error: null, data: null };
 
     if (!gmailField.trim() || !passwordField.trim()) {
-        result.error = 'Пожалуйста, заполните все поля.';
+        result.error = 'Please fill in all fields.';
         return result
     } else if(!gmailField.includes('@')){
-        result.error = 'Пожалуйста, введите корректный адрес электронной почты.';
+        result.error = 'Please enter a valid email address.';
         return result
     }
 
@@ -52,27 +52,27 @@ const handleLogin = async () => {
                 await store.dispatch(updateAuthenticationStatus(true))
                 await store.dispatch(updateNewToDoDataActionCreator(true));
                 
-                result.data = 'Добро пожаловать в аккаунт!';
+                result.data = 'Welcome to account!';
                 return result;
                 
 
               }else{
-                console.error('Ошибка сохранении пользователя ID в LocalStorage');
+                console.error('Error saving user ID to LocalStorage.');
               }
 
             } catch (error) {
-              console.error('Ошибка при отправке запроса:', error);
+              console.error('Error sending request:', error);
             }
 
           }else{
-            result.error = 'Такого пользователя с такими данными нету!';
+            result.error = 'There is no user with such data.';
           return result
           }
         } else {
-          console.error('Ошибка при отправке запроса');
+          console.error('Error sending request.');
         }
       } catch (error) {
-        console.error('Ошибка при отправке запроса:', error);
+        console.error('Error sending request:', error);
       }
 
 }

@@ -17,13 +17,13 @@ const handleRegistration = async () => {
   };
 
   if (!gmailField.trim() || !passwordField.trim() || !confirmField.trim()) {
-    result.error = 'Пожалуйста, заполните все поля.';
+    result.error = 'Please fill in all fields.';
     return result;
   } else if (!gmailField.includes('@')) {
-    result.error = 'Пожалуйста, введите корректный адрес электронной почты.';
+    result.error = 'Please enter a valid email address.';
     return result;
   } else if (passwordField !== confirmField) {
-    result.error = 'Пароли не совпадают.';
+    result.error = 'The passwords do not match.';
     return result
   }
 
@@ -42,7 +42,7 @@ const handleRegistration = async () => {
 
     if (checkUserRegistrationResponse.ok) {
       if (checkUserRegistrationResult.exists) {
-        result.error = 'Пользователь с таким адресом электронной почты уже существует.';
+        result.error = 'The user with this email address already exists.';
         return result;
       } else {
 
@@ -66,21 +66,21 @@ const handleRegistration = async () => {
           localStorage.setItem('personID', user_id);
 
           store.dispatch(updateAuthenticationStatus(true)).then(() => {
-            result.data = 'Регистрация прошла успешно!';
+            result.data = 'Registration was successful!';
             return result;
           });
 
-          result.data = 'Регистрация прошла успешно!';
+          result.data = 'Registration was successful!';
           return result;
         } else {
-          console.error('Ошибка при регистрации:', registerResponse.statusText);
+          console.error('Registration error:', registerResponse.statusText);
         }
       }
     } else {
-      console.error('Ошибка при проверке пользователя:', checkUserRegistrationResult.error);
+      console.error('User verification error:', checkUserRegistrationResult.error);
     }
   } catch (error) {
-    console.error('Ошибка при отправке запроса:', error);
+    console.error('Error sending request:', error);
   }
 
 }

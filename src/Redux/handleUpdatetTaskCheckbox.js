@@ -19,10 +19,10 @@ const handleUpdatetTaskCheckbox = async (fieldId, checkboxValue) => {
         if(updateUserTaskCheckboxResult.ok){
             store.dispatch(updateNewToDoDataActionCreator(true));
         }else {
-          console.error('Ошибка при изменении задания:', updateUserTaskCheckboxResult.error);
+          console.error('Error while updating the task:', updateUserTaskCheckboxResult.error);
         }
     }catch (error){
-        console.error('Ошибка при отправке запроса:', error);
+        console.error('Error sending request:', error);
     }
 }
 

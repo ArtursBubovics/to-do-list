@@ -18,9 +18,6 @@ const popupReducer = (state, action) => {
             return {
                 ...state,
                 popupBlock: {
-                    // isActive: false,
-                    // message: '',
-                    // messageType: ''
                     ...state.popupBlock,
                     isActive: false
                 }
