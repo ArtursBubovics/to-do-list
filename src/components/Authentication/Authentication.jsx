@@ -3,6 +3,8 @@ import "./Authentication.css"
 import AuthenticationInputs from "./AuthenticationInputs/AuthenticationInputs"
 import AuthenticationBtn from "./AuthenticationBtn/AuthenticationBtn"
 import PopupBlock from '../PopupBlock/PopupBlock';
+import { Transition } from 'react-transition-group';
+import { clearPopupActionCreator} from '../../Redux/Reducers/popup-reducer';
 
 const clearLocalStorage = () => {
     localStorage.clear();
@@ -13,10 +15,17 @@ const Authentication = (props) => {
     useEffect(() => {
         clearLocalStorage();
       }, []);
-
+      
     return (
         <div className="authentication">
-            {props.state.popupBlock.isActive ? <PopupBlock state={props.state}/> : null } 
+            <Transition
+                in={props.state.popupBlock.isActive}
+                timeout={500}
+                unmountOnExit
+                onExited={() => props.dispatch(clearPopupActionCreator())} 
+            >
+                {state => <PopupBlock state={props.state} stateTransition={state}/>}
+            </Transition>
             <div className="authentication__container">
                 <div className="authentication__inner-block">
                     <img className="authentication__img" src="/img/user-con.png" alt=''/>

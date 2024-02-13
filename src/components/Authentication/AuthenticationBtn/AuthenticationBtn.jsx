@@ -17,8 +17,8 @@ const AuthenticationBtn = (props) => {
             if (result.error) {
                 props.dispatch(showPlainTextActionCreator(result.error));
             
-                setTimeout(() => {
-                    props.dispatch(hidePopupActionCreator());
+                 setTimeout(() => {
+                     props.dispatch(hidePopupActionCreator());
                 }, 3000);
             } else {
                 props.dispatch(updateUrlActionCreator(navigate)).then(() => {

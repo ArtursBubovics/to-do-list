@@ -24,7 +24,6 @@ let store = {
     _callSubscriber() {},
 
     getState() {
-        console.log(this._state)
         return this._state
     },
     subscribe(observer) {
@@ -35,7 +34,6 @@ let store = {
         this._state = await authenticationReducer(this._state, action)
         this._state = await toDoReducer(this._state, action)
         this._state = await popupReducer(this._state, action)
-        debugger
 
         this._callSubscriber(this._state)
     }

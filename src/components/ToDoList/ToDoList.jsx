@@ -4,6 +4,8 @@ import "./ToDoList.css"
 import { updateNewEnterTextActionCreator } from "../../Redux/Reducers/todo-reducer"
 import handleAddTask from "../../Redux/handleAddTask"
 import PopupBlock from "../PopupBlock/PopupBlock"
+import { Transition } from 'react-transition-group';
+import { clearPopupActionCreator} from '../../Redux/Reducers/popup-reducer';
 
 
 const ToDoList = (props) => {
@@ -26,7 +28,14 @@ const ToDoList = (props) => {
         <div>
             <Header />
             <div className="to-do__block">
-            {props.state.popupBlock.isActive ? <PopupBlock state={props.state}/> : null } 
+            <Transition
+                in={props.state.popupBlock.isActive}
+                timeout={500}
+                unmountOnExit
+                onExited={() => props.dispatch(clearPopupActionCreator())} 
+            >
+                {state => <PopupBlock state={props.state} stateTransition={state}/>}
+            </Transition>
 
                 <h1>ToDoList</h1>
                 {toDoListPage.toDoFieldData !== null ?
